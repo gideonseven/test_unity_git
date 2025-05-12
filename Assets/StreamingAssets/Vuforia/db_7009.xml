@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig>
   <Tracking>
+    <ImageTarget name="desk_lamp" size="1500.000000 1500.000000" />
+    <ImageTarget name="desk_monitor" size="1500.000000 1092.000000" />
     <ImageTarget name="mug" size="0.271000 0.271000" />
+    <ImageTarget name="qrcode" size="0.200000 0.200000" />
   </Tracking>
 </QCARConfig>
