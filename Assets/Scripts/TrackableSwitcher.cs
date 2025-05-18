@@ -6,23 +6,23 @@ public class TrackableSwitcher : MonoBehaviour
     private GameObject modelObject;
     private ObserverBehaviour observer;
 
-    private static GameObject currentModel;  // static to track globally
+    private static GameObject currentModel;  // Globally tracks the last active model
 
     void Start()
     {
         observer = GetComponent<ObserverBehaviour>();
 
-        // Automatically grab the first child as the model
+        // Auto-assign first child as the model
         if (transform.childCount > 0)
         {
             modelObject = transform.GetChild(0).gameObject;
         }
         else
         {
-            Debug.LogError("No model under this ImageTarget: " + gameObject.name);
+            Debug.LogError("No 3D model found under " + gameObject.name);
         }
 
-        if (observer)
+        if (observer != null)
         {
             observer.OnTargetStatusChanged += OnTargetStatusChanged;
         }
@@ -30,32 +30,36 @@ public class TrackableSwitcher : MonoBehaviour
 
     void OnDestroy()
     {
-        if (observer)
+        if (observer != null)
         {
             observer.OnTargetStatusChanged -= OnTargetStatusChanged;
         }
     }
 
-    void OnTargetStatusChanged(ObserverBehaviour behaviour, TargetStatus targetStatus)
+    void OnTargetStatusChanged(ObserverBehaviour behaviour, TargetStatus status)
     {
         if (modelObject == null) return;
 
-        if (targetStatus.Status == Status.TRACKED || targetStatus.Status == Status.EXTENDED_TRACKED)
+        if (status.Status == Status.TRACKED || status.Status == Status.EXTENDED_TRACKED)
         {
-            // Disable the previous model if it exists and isn't this one
+            // Deactivate the previous model if different
             if (currentModel != null && currentModel != modelObject)
             {
                 currentModel.SetActive(false);
             }
 
+            // Activate this model
             modelObject.SetActive(true);
             currentModel = modelObject;
 
+            // Register it for anchoring
             FindObjectOfType<AnchorObjectController>()?.SetCurrentObject(modelObject);
+
             Debug.Log("Activated: " + modelObject.name);
         }
         else
         {
+            // Hide this model if tracking is lost
             if (modelObject.activeSelf)
             {
                 modelObject.SetActive(false);

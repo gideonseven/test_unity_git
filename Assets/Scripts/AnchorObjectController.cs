@@ -7,12 +7,14 @@ public class AnchorObjectController : MonoBehaviour
 
     private GameObject currentARObject;
 
+    // Called by TrackableSwitcher to register which object is currently being tracked
     public void SetCurrentObject(GameObject obj)
     {
         currentARObject = obj;
         Debug.Log("Set current object to: " + obj.name);
     }
 
+    // Called when user presses "Move Here" button
     public void AnchorVisibleObject()
     {
         if (currentARObject == null)
@@ -21,11 +23,19 @@ public class AnchorObjectController : MonoBehaviour
             return;
         }
 
-        Debug.Log("Anchoring: " + currentARObject.name);
+        // Save the current rotation BEFORE unparenting
+        Quaternion savedRotation = currentARObject.transform.rotation;
 
+        // Detach from image target
         currentARObject.transform.parent = null;
+
+        // Move to the front of the camera
         Vector3 targetPosition = arCamera.transform.position + arCamera.transform.forward * distanceFromCamera;
         currentARObject.transform.position = targetPosition;
-      
+
+        // Restore original rotation
+        currentARObject.transform.rotation = savedRotation;
+
+        Debug.Log("Anchored: " + currentARObject.name + " to " + targetPosition);
     }
 }
