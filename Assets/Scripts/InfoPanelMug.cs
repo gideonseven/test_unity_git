@@ -14,6 +14,7 @@ public class ShowInfoPanel : MonoBehaviour
     {
         if (infoPanel != null)
             infoPanel.SetActive(true);
+            InfoPanelManager.Instance?.SetActivePanel(this);
     }
 
     public void HidePanel()
