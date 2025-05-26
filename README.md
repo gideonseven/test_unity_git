@@ -10,7 +10,8 @@ This is a project task for 7009ICT Griffith University
 </p>
 
 ## Video Demo
-[Demo video is here](video/7009ICT_demo.mp4)
+
+[Watch the demo video](video/7009ICT_demo.mp4)
 
 ## Technology uses
 - Unity 2022.3.1f1
