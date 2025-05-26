@@ -1,4 +1,4 @@
-# My Awesome Project
+# AR Advertising
 
 This is a project task for 7009ICT Griffith University
 
