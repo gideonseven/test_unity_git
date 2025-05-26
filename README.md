@@ -17,3 +17,8 @@ This is a project task for 7009ICT Griffith University
 ## Technology uses
 - Unity 2022.3.1f1
 - Vuforia engine - 11.1.3
+
+## Scan to download APK file
+<p align="center">
+  <img src="images/qr-code.png" alt="Splash Screen" width="200"/>
+</p>
