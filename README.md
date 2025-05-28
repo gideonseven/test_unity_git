@@ -22,3 +22,13 @@ This is a project task for 7009ICT Griffith University
 <p align="center">
   <img src="images/qr-code.png" alt="Splash Screen" width="200"/>
 </p>
+
+## How to run them
+  Download the Vuforia Engine 11.1.3 from [here](https://drive.google.com/file/d/1Jr9kzAFyE5KQy4J8gpOsr3y6h4D9bBS2/view?usp=drive_link).
+<p align ="center">  
+  <li>clone the project (make sure check out from master). </li>
+  <li>Open Project using unity 2022.3.1f1. </li>
+  <li>Add the downloaded .tgz file from package manager local file</li>
+  <li>Build Setting -> Switch to Android</li>
+  <li>Run the App!</li>
+</p>
